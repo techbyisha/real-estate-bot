@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Listing content, generated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1E2B3A;
+    --slate: #5B6B7A;
+    --brass: #9C7A3C;
+    --brass-light: #E8DCC4;
+    --paper: #F0EEE7;
+    --card: #FFFFFF;
+    --rule: #D9D4C7;
+    --error: #A34B4B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--brass);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; margin: 8px 0; }
+  h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; }
+  p.lede { color: var(--slate); font-size: 14px; max-width: 600px; }
+
+  .pipeline { display: flex; align-items: center; margin: 32px 0; }
+  .stage { display: flex; flex-direction: column; align-items: center; min-width: 96px; }
+  .dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--rule); background: var(--card); color: var(--slate);
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+  .dot.active, .dot.done { background: var(--brass); border-color: var(--brass); color: #fff; }
+  .stage-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase;
+    color: var(--slate); margin-top: 8px; text-align: center;
+  }
+  .stage-label.active, .stage-label.done { color: var(--ink); }
+  .connector { flex: 1; height: 1.5px; background: var(--rule); margin: 0 4px 22px; transition: background .3s; }
+  .connector.done { background: var(--brass); }
+
+  .grid { display: grid; grid-template-columns: 2fr 3fr; gap: 24px; margin-bottom: 40px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; }
+  .card-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--slate); margin-bottom: 14px;
+  }
+  label { display: block; font-size: 12px; color: var(--slate); margin-bottom: 4px; }
+  input, textarea {
+    width: 100%; padding: 8px 10px; margin-bottom: 12px;
+    border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);
+    font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink);
+  }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  textarea { resize: none; }
+  button {
+    width: 100%; padding: 11px; border: none; border-radius: 4px;
+    background: var(--brass); color: #fff; font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+  }
+  button:disabled { background: var(--brass-light); color: var(--brass); cursor: default; }
+  button.secondary { width: auto; padding: 10px 16px; }
+
+  .placeholder {
+    height: 100%; min-height: 220px; display: flex; align-items: center; justify-content: center;
+    text-align: center; border: 1px dashed var(--rule); border-radius: 6px; color: var(--slate);
+    font-size: 14px; padding: 24px;
+  }
+  .hashtag {
+    display: inline-block; font-size: 12px; padding: 4px 8px; border-radius: 4px;
+    background: var(--brass-light); color: var(--brass); margin: 4px 4px 0 0;
+  }
+  ol.storyboard { padding-left: 0; list-style: none; margin: 0; }
+  ol.storyboard li { display: flex; font-size: 14px; margin-bottom: 8px; }
+  ol.storyboard .num { font-family: 'IBM Plex Mono', monospace; color: var(--brass); min-width: 22px; }
+  .note {
+    border: 1px dashed var(--rule); border-radius: 6px; padding: 14px; font-size: 12px; color: var(--slate);
+  }
+  .error { color: var(--error); font-size: 12px; margin-top: 6px; }
+  .divider { border-top: 1px solid var(--rule); margin: 32px 0; }
+  .reply-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .reply-grid { grid-template-columns: 1fr; } }
+  .reply-box { min-height: 88px; border: 1px solid var(--rule); border-radius: 4px; padding: 10px; font-size: 14px; background: var(--card); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Autonomous listing pipeline</div>
+  <h1>Listing content, generated</h1>
+  <p class="lede">Enter a property once. The pipeline drafts the caption, the reel storyboard, and answers buyer comments &mdash; unattended, on a schedule, in production.</p>
+
+  <div class="pipeline" id="pipeline">
+    <div class="stage"><div class="dot done" id="dot-0">1</div><div class="stage-label done" id="label-0">Listed</div></div>
+    <div class="connector" id="conn-0"></div>
+    <div class="stage"><div class="dot" id="dot-1">2</div><div class="stage-label" id="label-1">Generating</div></div>
+    <div class="connector" id="conn-1"></div>
+    <div class="stage"><div class="dot" id="dot-2">3</div><div class="stage-label" id="label-2">Ready to post</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-label">Property intake</div>
+      <label>Address</label>
+      <input id="address" value="214 Oakwood Lane, Austin, TX" />
+      <div class="row3">
+        <div><label>Price</label><input id="price" value="$485,000" /></div>
+        <div><label>Beds</label><input id="beds" value="3" /></div>
+        <div><label>Baths</label><input id="baths" value="2" /></div>
+      </div>
+      <label>Key features</label>
+      <textarea id="features" rows="3">Newly renovated kitchen, private backyard, 10 minutes from downtown, natural light throughout</textarea>
+      <button id="generateBtn" onclick="generateContent()">Generate content</button>
+      <div class="error" id="genError"></div>
+    </div>
+
+    <div id="output">
+      <div class="placeholder">Generated caption, storyboard, and hashtags will appear here.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="eyebrow">Autonomous reply</div>
+  <h2>A comment comes in on the post. The bot answers it.</h2>
+  <div class="reply-grid" style="margin-top: 16px;">
+    <div>
+      <label>Incoming comment</label>
+      <textarea id="comment" rows="3">Is this still available? What's the HOA like?</textarea>
+      <button class="secondary" id="replyBtn" onclick="generateReply()">Generate reply</button>
+      <div class="error" id="replyError"></div>
+    </div>
+    <div>
+      <label>Drafted reply</label>
+      <div class="reply-box" id="replyBox" style="color: var(--slate);">Waiting for a reply to draft.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function setStage(n) {
+  for (let i = 0; i < 3; i++) {
+    const dot = document.getElementById('dot-' + i);
+    const label = document.getElementById('label-' + i);
+    const done = i < n || (i === n && n === 2);
+    const active = i === n && n !== 2;
+    dot.classList.toggle('done', i <= n);
+    label.classList.toggle('done', i <= n);
+    if (i < 2) document.getElementById('conn-' + i).classList.toggle('done', i < n);
+  }
+}
+
+async function generateContent() {
+  const btn = document.getElementById('generateBtn');
+  const errBox = document.getElementById('genError');
+  errBox.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  setStage(1);
+
+  const payload = {
+    address: document.getElementById('address').value,
+    price: document.getElementById('price').value,
+    beds: document.getElementById('beds').value,
+    baths: document.getElementById('baths').value,
+    features: document.getElementById('features').value,
+  };
+
+  try {
+    const res = await fetch('/api/generate-content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || 'Generation failed');
+    }
+    const data = await res.json();
+    renderOutput(data);
+    setStage(2);
+  } catch (e) {
+    errBox.textContent = e.message;
+    setStage(0);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Generate content';
+  }
+}
+
+function renderOutput(data) {
+  const hashtags = (data.hashtags || []).map(t => `<span class="hashtag">#${t}</span>`).join('');
+  const scenes = (data.storyboard || [])
+    .map((s, i) => `<li><span class="num">${i + 1}</span><span>${s}</span></li>`)
+    .join('');
+
+  document.getElementById('output').innerHTML = `
+    <div class="card" style="margin-bottom: 16px;">
+      <div class="card-label">Listing caption</div>
+      <p style="font-size: 14px; line-height: 1.6;">${data.caption}</p>
+      <div>${hashtags}</div>
+    </div>
+    <div class="card" style="margin-bottom: 16px;">
+      <div class="card-label">Reel storyboard</div>
+      <ol class="storyboard">${scenes}</ol>
+    </div>
+    <div class="note">Next stage: photo and video rendering. In production this storyboard feeds an image-generation API and a template video engine to produce the actual clip and photos, then posts them on schedule.</div>
+  `;
+}
+
+async function generateReply() {
+  const btn = document.getElementById('replyBtn');
+  const errBox = document.getElementById('replyError');
+  const box = document.getElementById('replyBox');
+  errBox.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Drafting…';
+
+  const payload = {
+    address: document.getElementById('address').value,
+    price: document.getElementById('price').value,
+    beds: document.getElementById('beds').value,
+    baths: document.getElementById('baths').value,
+    features: document.getElementById('features').value,
+    comment: document.getElementById('comment').value,
+  };
+
+  try {
+    const res = await fetch('/api/generate-reply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || 'Reply generation failed');
+    }
+    const data = await res.json();
+    box.textContent = data.reply;
+    box.style.color = 'var(--ink)';
+  } catch (e) {
+    errBox.textContent = e.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Generate reply';
+  }
+}
+</script>
+</body>
+</html>
